@@ -1,0 +1,468 @@
+{
+	"info": {
+		"_postman_id": "c872e700-4624-484e-b42f-58c67a3e8169",
+		"name": "Kombee Frontend Assignment Task APIs",
+		"description": "Saleor GraphQL endpoints for frontend assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45828320",
+		"_collection_link": "https://pavitrabhatt-1680368.postman.co/workspace/Pavitra-Bhatt's-Workspace~34bd811a-f823-439c-84c0-e173fb271edb/collection/45726230-c872e700-4624-484e-b42f-58c67a3e8169?action=share&source=collection_link&creator=45828320"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\r\n  tokenCreate(email: \"admin1@example.com\", password: \"admin\") {\r\n    token\r\n    user {\r\n      email\r\n      isStaff\r\n      userPermissions {\r\n        code\r\n      }\r\n    }\r\n    errors {\r\n      field\r\n      message\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aattribute listing",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJSUzI1NiIsImtpZCI6IlFhQm5sMjZWazFUcEJuMGdldHRxT3ZMX1Z6RzZZWDhpcEdHWW5XM01hX00iLCJ0eXAiOiJKV1QifQ.eyJpYXQiOjE3NTIyMDY2NjcsIm93bmVyIjoic2FsZW9yIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2dyYXBocWwvIiwiZXhwIjoxNzUyMjM1NDY3LCJ0b2tlbiI6IjNlMzNiYWE2YTc1ZiIsImVtYWlsIjoiYWRtaW4xQGV4YW1wbGUuY29tIiwidHlwZSI6ImFjY2VzcyIsInVzZXJfaWQiOiJWWE5sY2pvMU5nPT0iLCJpc19zdGFmZiI6dHJ1ZX0.n3-8sYygCORwtuiD8mqNRjiNkwkYw9GCeBixGzHT9gjEgyw41e7nLCaka6wQ-PX4JDuABVH4MYyw7mYosgF2mmNjIEi8Jshch4Ww-Fpi9KI46CmYhDc3joBG9Mvk0OZjgMANK2eWf6DjRBZo68YIADgITVjm09BwB1UBSWGuv6mduPUuVxHvmxIemYPPWirVBanpAKPD1GrKsDgE9iQQFLYz52ki1vXiRkhPF9vkMmI8P0LlCMPmnHNdSdBqPlu1nHMYDkC5bMoLS48Xa8D5MwQC0MIUlBSfQ0ecqYdrCoUQemlQIqdc70SyJVRQERdl52RQnn5hwPh9H6vS_tJNDw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n  attributes(first: 10) {\r\n    edges {\r\n      node {\r\n        id\r\n        name\r\n        slug\r\n        inputType\r\n        choices(first: 10) {\r\n          edges {\r\n            node {\r\n              id\r\n              name\r\n              slug\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product List Page (PLP)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "# query {\r\n#   products(\r\n#     first: 5,\r\n#     channel: \"online-inr\",\r\n#     filter: {\r\n#       attributes: [\r\n#         {\r\n#           slug: \"color\"\r\n#           values: [\"white-gold\"]\r\n#         },\r\n#         {\r\n#           slug: \"metal\"\r\n#           values: [\"gold\"]\r\n#         }\r\n#       ]\r\n#     }\r\n#   ) {\r\n#     edges {\r\n#       node {\r\n#         id\r\n#         name\r\n#         variants {\r\n#           id\r\n#           name\r\n#           sku\r\n#         }\r\n#       }\r\n#     }\r\n#   }\r\n# }\r\n\r\n\r\n\r\n# {\r\n#   products(\r\n#     first: 5,\r\n#     channel: \"online-inr\",\r\n#     filter: {\r\n#       attributes: [\r\n#         { slug: \"carat\", values: [\"2\"] }\r\n#       ]\r\n#     }\r\n#   ) {\r\n#     edges { node { id name } }\r\n#   }\r\n# }\r\n\r\n\r\n\r\n\r\n# {\r\n#   products(\r\n#     first: 5,\r\n#     channel: \"online-inr\",\r\n#     filter: {\r\n#       attributes: [\r\n#         { slug: \"gender\", values: [\"female\"] }\r\n#       ]\r\n#     }\r\n#   ) {\r\n#     edges { node { id name } }\r\n#   }\r\n# }\r\n\r\n\r\n\r\n\r\n\r\n\r\n{\r\n  products(\r\n    first: 5,\r\n    channel: \"online-inr\",\r\n    filter: {\r\n      attributes: [\r\n        { slug: \"shape\", values: [\"round\"] },\r\n        { slug: \"size\", values: [\"3\"] }\r\n      ]\r\n    }\r\n  ) {\r\n    edges { node { id name } }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Detail Page (PDP)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetProduct($id: ID, $slug: String, $channel: String) {\r\n  product(id: $id, slug: $slug, channel: $channel) {\r\n    id\r\n    name\r\n    slug\r\n    description\r\n    seoTitle\r\n    seoDescription\r\n    defaultVariant {\r\n      id\r\n      name\r\n      sku\r\n      pricing {\r\n        priceUndiscounted {\r\n          gross {\r\n            amount\r\n            currency\r\n          }\r\n        }\r\n        price {\r\n          gross {\r\n            amount\r\n            currency\r\n          }\r\n        }\r\n      }\r\n    }\r\n    variants {\r\n      id\r\n      name\r\n      sku\r\n      pricing {\r\n        price {\r\n          gross {\r\n            amount\r\n            currency\r\n          }\r\n        }\r\n      }\r\n      attributes {\r\n        attribute {\r\n          id\r\n          name\r\n        }\r\n        values {\r\n          id\r\n          name\r\n        }\r\n      }\r\n    }\r\n    media {\r\n      id\r\n      url\r\n      alt\r\n      type\r\n    }\r\n    attributes {\r\n      attribute {\r\n        id\r\n        name\r\n      }\r\n      values {\r\n        id\r\n        name\r\n      }\r\n    }\r\n    category {\r\n      id\r\n      name\r\n      slug\r\n    }\r\n    productType {\r\n      id\r\n      name\r\n    }\r\n    isAvailableForPurchase\r\n    availableForPurchase\r\n  }\r\n}",
+						"variables": "{\r\n  \"slug\": \"2-ctw-emerald-lab-grown-diamond-eternity-band-3mm-width\",\r\n  \"channel\": \"online-inr\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add to Cart (Checkout Create)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AddToCart($input: CheckoutCreateInput!) {\r\n  checkoutCreate(input: $input) {\r\n    checkout {\r\n      id\r\n      token\r\n      lines {\r\n        id\r\n        quantity\r\n        variant {\r\n          id\r\n          name\r\n          product {\r\n            id\r\n            name\r\n            slug\r\n            thumbnail {\r\n              url\r\n            }\r\n          }\r\n          pricing {\r\n            price {\r\n              gross {\r\n                amount\r\n                currency\r\n              }\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n    errors {\r\n      field\r\n      message\r\n    }\r\n  }\r\n}",
+						"variables": "{\r\n  \"input\": {\r\n    \"channel\": \"online-inr\",\r\n    \"lines\": [\r\n      {\r\n        \"quantity\": 1,\r\n        \"variantId\": \"UHJvZHVjdFZhcmlhbnQ6NDAz\"\r\n      }\r\n    ],\r\n    \"email\": \"user@example.com\"\r\n  }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Shipping Zones",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "JWT eyJhbGciOiJSUzI1NiIsImtpZCI6IlFhQm5sMjZWazFUcEJuMGdldHRxT3ZMX1Z6RzZZWDhpcEdHWW5XM01hX00iLCJ0eXAiOiJKV1QifQ.eyJpYXQiOjE3NTIxNTAzMjgsIm93bmVyIjoic2FsZW9yIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDAwL2dyYXBocWwvIiwiZXhwIjoxNzUyMTc5MTI4LCJ0b2tlbiI6IjNlMzNiYWE2YTc1ZiIsImVtYWlsIjoiYWRtaW4xQGV4YW1wbGUuY29tIiwidHlwZSI6ImFjY2VzcyIsInVzZXJfaWQiOiJWWE5sY2pvMU5nPT0iLCJpc19zdGFmZiI6dHJ1ZX0.BKQ2ReygmT1RyvTBT1yWYetGCfyQD1ueVMh2FzOwwUeTcwp0ILkE8JyNKhm6Jbsmzo8yKZDrkDmCdEqOTSC2aFS16gNRjdwQ050iPqbZMKXwysj3Az2ZsXU4nYdewmt4Kj3-pOZ2qdD1uKWTGOn-b_VT4bTxabO1RftEf1faLMiJKyAFuru8lNubn7lJB4HkcveBKFOhlXJqjNsSe5qmpurUhgTyAwO803nvJerxIJMVfiw0QyMN2UhZjFF8ITsy8qc-_m-4A8VqdW6X5clASW-PXM1rlVrL1TgRDq8Z_J6dbAM5zxif0N9CZKZKOrU0pXyEXh_H_h_Dp_Xl1qdK2Q",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetShippingZones {\r\n  shippingZones(first: 10) {\r\n    edges {\r\n      node {\r\n        id\r\n        name\r\n        countries {\r\n          code\r\n          country\r\n        }\r\n        shippingMethods {\r\n          id\r\n          name\r\n          minimumOrderPrice {\r\n            amount\r\n            currency\r\n          }\r\n          type\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Shipping Address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation SetShippingAddress($checkoutId: ID!, $shippingAddress: AddressInput!) {\r\n  checkoutShippingAddressUpdate(checkoutId: $checkoutId, shippingAddress: $shippingAddress) {\r\n    checkout {\r\n      id\r\n      shippingAddress {\r\n        id\r\n        firstName\r\n        lastName\r\n        streetAddress1\r\n        city\r\n        countryArea\r\n        postalCode\r\n        country {\r\n          code\r\n        }\r\n      }\r\n    }\r\n    errors {\r\n      field\r\n      message\r\n    }\r\n  }\r\n}",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\",\r\n  \"shippingAddress\": {\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"streetAddress1\": \"123 Main Street\",\r\n    \"city\": \"Mumbai\",\r\n    \"countryArea\": \"Maharashtra\",\r\n    \"postalCode\": \"400001\",\r\n    \"country\": \"IN\"\r\n  }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Billing Address",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation SetBillingAddress($checkoutId: ID!, $billingAddress: AddressInput!) {\r\n  checkoutBillingAddressUpdate(checkoutId: $checkoutId, billingAddress: $billingAddress) {\r\n    checkout {\r\n      id\r\n      billingAddress {\r\n        id\r\n        firstName\r\n        lastName\r\n        streetAddress1\r\n        city\r\n        countryArea\r\n        postalCode\r\n        country {\r\n          code\r\n        }\r\n      }\r\n    }\r\n    errors {\r\n      field\r\n      message\r\n    }\r\n  }\r\n}",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\",\r\n  \"billingAddress\": {\r\n    \"firstName\": \"John\",\r\n    \"lastName\": \"Doe\",\r\n    \"streetAddress1\": \"123 Main Street\",\r\n    \"city\": \"Mumbai\",\r\n    \"countryArea\": \"Maharashtra\",\r\n    \"postalCode\": \"400001\",\r\n    \"country\": \"IN\"\r\n  }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/graphql/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Available Shipping Methods",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetAvailableShippingMethods($checkoutId: ID!) {\r\n  checkout(id: $checkoutId) {\r\n    id\r\n    availableShippingMethods {\r\n      id\r\n      name\r\n      price {\r\n        amount\r\n        currency\r\n      }\r\n      minimumOrderPrice {\r\n        amount\r\n        currency\r\n      }\r\n      type\r\n    }\r\n    shippingAddress {\r\n      country {\r\n        code\r\n        country\r\n      }\r\n      city\r\n      postalCode\r\n    }\r\n  }\r\n}",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Shipping Method",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetShippingMethods($checkoutId: ID!) {\r\n  checkout(id: $checkoutId) {\r\n    id\r\n    availableShippingMethods {\r\n      id\r\n      name\r\n      price {\r\n        amount\r\n        currency\r\n      }\r\n      minimumOrderPrice {\r\n        amount\r\n        currency\r\n      }\r\n    }\r\n      __typename\r\n  }\r\n}",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Shipping Method",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation SetShippingMethod($checkoutId: ID!, $shippingMethodId: ID!) {\r\n  checkoutShippingMethodUpdate(checkoutId: $checkoutId, shippingMethodId: $shippingMethodId) {\r\n    checkout {\r\n      id\r\n      shippingMethod {\r\n        id\r\n        name\r\n        price {\r\n          amount\r\n          currency\r\n        }\r\n      }\r\n    }\r\n    errors {\r\n      field\r\n      message\r\n    }\r\n  }\r\n}",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\",\r\n  \"shippingMethodId\": \"U2hpcHBpbmdNZXRob2RUeXBlOjY=\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Checkout Total (for payment)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetCheckoutTotal($checkoutId: ID!) {\r\n  checkout(id: $checkoutId) {\r\n    id\r\n    totalPrice {\r\n      gross {\r\n        amount\r\n        currency\r\n      }\r\n    }\r\n    subtotalPrice {\r\n      gross {\r\n        amount\r\n        currency\r\n      }\r\n    }\r\n    shippingPrice {\r\n      gross {\r\n        amount\r\n        currency\r\n      }\r\n    }\r\n  }\r\n}",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Payment Method",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AddPaymentMethod($checkoutId: ID!, $paymentMethod: PaymentInput!) {\r\n  checkoutPaymentCreate(checkoutId: $checkoutId, input: $paymentMethod) {\r\n    checkout {\r\n      id\r\n      totalPrice {\r\n        gross {\r\n          amount\r\n          currency\r\n        }\r\n      }\r\n    }\r\n    errors {\r\n      field\r\n      message\r\n    }\r\n  }\r\n}",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\",\r\n  \"paymentMethod\": {\r\n    \"gateway\": \"mirumee.payments.dummy\",\r\n    \"token\": \"dummy-token\",\r\n    \"amount\": 44245.00 // this amout should match with GetCheckoutTotal total\r\n  }\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Checkout Complete",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation CompleteCheckout($checkoutId: ID!) {\r\n  checkoutComplete(checkoutId: $checkoutId) {\r\n    order {\r\n      id\r\n      status\r\n      number\r\n      total {\r\n        gross {\r\n          amount\r\n          currency\r\n        }\r\n      }\r\n      lines {\r\n        id\r\n        quantity\r\n        variant {\r\n          id\r\n          name\r\n          product {\r\n            name\r\n          }\r\n        }\r\n      }\r\n    }\r\n    confirmationNeeded\r\n    confirmationData\r\n    errors {\r\n      field\r\n      message\r\n    }\r\n  }\r\n}",
+						"variables": "{\r\n  \"checkoutId\": \"Q2hlY2tvdXQ6MWUwYTY0ZjktODI2Ni00ZmMxLWFhNTMtMTNhMTRiZTc5YmNm\"\r\n}"
+					}
+				},
+				"url": {
+					"raw": "https://saleor-kombee.onrender.com/graphql/",
+					"protocol": "https",
+					"host": [
+						"saleor-kombee",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"graphql",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
