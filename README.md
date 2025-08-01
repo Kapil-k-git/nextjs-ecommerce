@@ -12,6 +12,15 @@ A modern e-commerce frontend built with Next.js 14, TypeScript, and Tailwind CSS
 - **Cart Page** - Full cart management
 - **Checkout Page** - Complete checkout flow with address forms
 
+## 🌐 Live Demo
+
+- **Vercel URL**: [https://nextjs-ecommerce-69ik.vercel.app/](https://nextjs-ecommerce-69ik.vercel.app/)
+
+## 📂 GitHub Repository
+
+- [https://github.com/Kapil-k-git/nextjs-ecommerce.git](https://github.com/Kapil-k-git/nextjs-ecommerce.git)
+
+
 ### Tech Stack
 - **Next.js 14** with App Router
 - **TypeScript** for type safety
